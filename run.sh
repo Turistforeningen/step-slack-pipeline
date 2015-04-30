@@ -17,7 +17,11 @@ fi
 
 # if no username is provided use the default - werckerbot
 if [ -z "$WERCKER_SLACK_NOTIFIER_USERNAME" ]; then
-  export WERCKER_SLACK_NOTIFIER_USERNAME=werckerbot
+  if [ "$WERCKER_RESULT" = "failed" ]; then
+    export USERNAME="Wercker Failed"
+  else
+    export USERNAME="Wercker Passed"
+  fi
 fi
 
 # if no icon-url is provided for the bot use the default wercker icon
