@@ -46,8 +46,8 @@ fi
 
 # construct the json
 json="{
-    \"username\": \"$WERCKER_SLACK_NOTIFIER_USERNAME\",
-    \"icon_url\":\"$WERCKER_SLACK_NOTIFIER_ICON_URL\",
+    \"username\": \"$USERNAME\",
+    \"icon_url\":\"$ICON_URL\",
     \"attachments\":[
       {
         \"fallback\": \"$FALLBACK\",
