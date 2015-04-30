@@ -5,11 +5,6 @@ if [ -z "$WERCKER_SLACK_NOTIFIER_URL" ]; then
   fail "Please provide a Slack webhook URL"
 fi
 
-# get the channel name to post notifications to
-if [ -z "$WERCKER_SLACK_NOTIFIER_CHANNEL" ]; then
-  fail "Please provide a Slack channel to push notifications to"
-fi
-
 # check if a '#' was supplied in the channel name
 if [ "${WERCKER_SLACK_NOTIFIER_CHANNEL:0:1}" = '#' ]; then
   export WERCKER_SLACK_NOTIFIER_CHANNEL=${WERCKER_SLACK_NOTIFIER_CHANNEL:1}
