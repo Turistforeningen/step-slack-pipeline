@@ -5,11 +5,6 @@ if [ -z "$WERCKER_SLACK_NOTIFIER_URL" ]; then
   fail "Please provide a Slack webhook URL"
 fi
 
-# check if a '#' was supplied in the channel name
-if [ "${WERCKER_SLACK_NOTIFIER_CHANNEL:0:1}" = '#' ]; then
-  export WERCKER_SLACK_NOTIFIER_CHANNEL=${WERCKER_SLACK_NOTIFIER_CHANNEL:1}
-fi
-
 # if no username is provided use the default - werckerbot
 if [ -z "$WERCKER_SLACK_NOTIFIER_USERNAME" ]; then
   if [ "$WERCKER_RESULT" = "failed" ]; then
@@ -51,7 +46,6 @@ fi
 
 # construct the json
 json="{
-    \"channel\": \"#$WERCKER_SLACK_NOTIFIER_CHANNEL\",
     \"username\": \"$WERCKER_SLACK_NOTIFIER_USERNAME\",
     \"icon_url\":\"$WERCKER_SLACK_NOTIFIER_ICON_URL\",
     \"attachments\":[

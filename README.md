@@ -6,7 +6,6 @@ webhook first (see the Slack integrations page to set one up).
 # Options
 
 - `url` Slack webhook url
-- `channel` (optional) Slack channel override
 - `username` (optional) Message username override
 - `icon_url` (optional) Message icon override
 - `notify_on` (optional) If set to `failed`, it will only notify on failed builds or deploys.
@@ -16,7 +15,7 @@ webhook first (see the Slack integrations page to set one up).
 ```yaml
 build:
     after-steps:
-        - slack-notifier:
+        - turistforeningen/slack-notifier:
             url: $SLACK_WEBHOOK_URL
 ```
 
