@@ -26,7 +26,11 @@ fi
 
 # if no icon-url is provided for the bot use the default wercker icon
 if [ -z "$WERCKER_SLACK_NOTIFIER_ICON_URL" ]; then
-  export WERCKER_SLACK_NOTIFIER_ICON_URL="https://secure.gravatar.com/avatar/a08fc43441db4c2df2cef96e0cc8c045?s=140"
+  if [ "$WERCKER_RESULT" = "failed" ]; then
+    export ICON_URL="https://raw.githubusercontent.com/wantedly/step-pretty-slack-notify/master/icons/failed.jpg"
+  else
+    export ICON_URL="https://raw.githubusercontent.com/wantedly/step-pretty-slack-notify/master/icons/passed.jpg"
+  fi
 fi
 
 # check if this event is a build or deploy
