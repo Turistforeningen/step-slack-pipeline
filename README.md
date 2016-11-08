@@ -15,7 +15,7 @@ webhook first (see the Slack integrations page to set one up).
 ```yaml
 build:
     after-steps:
-        - turistforeningen/slack-notifier:
+        - turistforeningen/slack-pipeline-notifier:
             url: $SLACK_WEBHOOK_URL
 ```
 

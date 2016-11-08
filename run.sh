@@ -1,12 +1,12 @@
 #!/bin/bash
 
 # check if slack webhook url is present
-if [ -z "$WERCKER_SLACK_NOTIFIER_URL" ]; then
+if [ -z "$WERCKER_SLACK_PIPELINE_NOTIFIER_URL" ]; then
   fail "Please provide a Slack webhook URL"
 fi
 
 # if no username is provided use the default - werckerbot
-if [ -z "$WERCKER_SLACK_NOTIFIER_USERNAME" ]; then
+if [ -z "$WERCKER_SLACK_PIPELINE_NOTIFIER_USERNAME" ]; then
   if [ "$WERCKER_RESULT" = "failed" ]; then
     export USERNAME="Wercker Failed"
   else
@@ -15,7 +15,7 @@ if [ -z "$WERCKER_SLACK_NOTIFIER_USERNAME" ]; then
 fi
 
 # if no icon-url is provided for the bot use the default wercker icon
-if [ -z "$WERCKER_SLACK_NOTIFIER_ICON_URL" ]; then
+if [ -z "$WERCKER_SLACK_PIPELINE_NOTIFIER_ICON_URL" ]; then
   if [ "$WERCKER_RESULT" = "failed" ]; then
     export ICON_URL="https://raw.githubusercontent.com/wantedly/step-pretty-slack-notify/master/icons/failed.jpg"
   else
@@ -60,14 +60,14 @@ json="{
 
 
 # skip notifications if not interested in passed builds or deploys
-if [ "$WERCKER_SLACK_NOTIFIER_NOTIFY_ON" = "failed" ]; then
+if [ "$WERCKER_SLACK_PIPELINE_NOTIFIER_NOTIFY_ON" = "failed" ]; then
 	if [ "$WERCKER_RESULT" = "passed" ]; then
 		return 0
 	fi
 fi
 
 # post the result to the slack webhook
-RESULT=$(curl -d "payload=$json" -s "$WERCKER_SLACK_NOTIFIER_URL" --output "$WERCKER_STEP_TEMP"/result.txt -w "%{http_code}")
+RESULT=$(curl -d "payload=$json" -s "$WERCKER_SLACK_PIPELINE_NOTIFIER_URL" --output "$WERCKER_STEP_TEMP"/result.txt -w "%{http_code}")
 cat "$WERCKER_STEP_TEMP/result.txt"
 
 if [ "$RESULT" = "500" ]; then
