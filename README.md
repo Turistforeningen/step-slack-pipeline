@@ -6,6 +6,7 @@ webhook first (see the Slack integrations page to set one up).
 # Options
 
 - `url` Slack webhook url
+- `pipeline` Pipeline name
 - `username` (optional) Message username override
 - `icon_url` (optional) Message icon override
 - `notify_on` (optional) If set to `failed`, it will only notify on failed builds or deploys.

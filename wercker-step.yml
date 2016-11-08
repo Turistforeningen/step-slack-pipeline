@@ -9,6 +9,9 @@ properties:
   url:
     type: string
     required: true
+  pipeline:
+    type: string
+    required: false
   username:
     type: string
     required: false
